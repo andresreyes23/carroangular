@@ -1,0 +1,43 @@
+<div class="form-grup" *ngIf="crud_operation.is_visible">
+
+  <label>status</label>
+  <select class="form-control" id="letra" [(ngModel)]="current_produ.status">
+    <option value="pending">pending</option>
+    <option value="completed">completed</option>
+</select>
+
+  <br>
+  <button class="btn btn-primary" (click)="save()">Salvar</button>
+  <button class="btn btn-danger" (click)="crud_operation.is_visible=false">cancelar</button>
+</div>
+
+<div class="container">
+<div class="panel-body">
+  <table class="table table-bordered">
+    <tr>
+      <th>id</th>
+      <th>status</th>
+      <th class="text-right">
+       accion
+      </th>
+
+
+    </tr>
+    <tr *ngFor="let row of data">
+      <td>{{row.id}}</td>
+      <td>{{row.status}}</td>
+
+      <td class="text-right">
+        <div *ngIf= "!row.confirm">
+          <button class="btn btn-primary" (click)="edit(row)">checkout</button>
+        </div>
+        <div *ngIf = "row.confirm">
+          <button class="btn btn-success" (click)="delete(row.id)">confirmar</button>
+          <button class="btn btn-danger" (click)="row.confirm = false">Cancelar</button>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+

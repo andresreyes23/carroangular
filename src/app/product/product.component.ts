@@ -1,20 +1,26 @@
-import { Component } from '@angular/core';
-import {Products} from './products';
-import {ProductService} from './product.service';
-import {Cart} from './cart';
-import {CartsService} from './carts.service';
+import { Component, OnInit } from '@angular/core';
+import {Products} from '../products';
+import {ProductService} from '../product.service';
+import {Cart} from '../cart';
+import {CartsService} from '../carts.service';
+import {Productcar} from '../productcar';
+import {ProductcarService} from '../productcar.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-product',
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.css']
 })
-export class AppComponent {
-  title = 'carro';
-
+export class ProductComponent implements OnInit {
   data:Products[];
   current_produ: Products;
   crud_operation = {
+    is_new: false,is_visible:false
+  }
+
+  datacc:Productcar[];
+  current_producc: Productcar;
+  crud_operationcc = {
     is_new: false,is_visible:false
   }
 
@@ -106,5 +112,13 @@ export class AppComponent {
     });
   }
 
+  editcc(row){
+    this.crud_operationc.is_visible = true;
+    this.crud_operationc.is_new = false;
+    this.current_produc = row;
+  }
+
 
 }
+
+

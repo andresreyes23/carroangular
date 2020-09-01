@@ -1,0 +1,44 @@
+<div class="form-grup" *ngIf="crud_operation.is_visible">
+  <h1>modificar carro</h1>
+  <br>
+  <label>cantidad</label>
+  <input type="number" class="form-control" [(ngModel)]="current_produ.quantity">
+  <br>
+
+  <button class="btn btn-danger" (click)="crud_operation.is_visible=false">listo</button>
+</div>
+
+<div class="container">
+<div class="panel-body">
+  <table class="table table-bordered">
+    <tr>
+      <th>id producto</th>
+      <th>id carro</th>
+      <th>cantidad</th>
+      <th class="text-right">
+        accion
+       </th>
+
+    </tr>
+    <tr *ngFor="let row of data">
+      <td>{{row.product_id}}</td>
+      <td>{{row.cart_id}}</td>
+      <td>{{row.quantity}}</td>
+
+
+
+      <td class="text-right">
+        <div *ngIf= "!row.confirm">
+          <button class="btn btn-danger" (click)="row.confirm = true">eliminar</button>
+          <button class="btn btn-primary" (click)="edit(row)">modificar</button>
+        </div>
+        <div *ngIf = "row.confirm">
+
+          <button class="btn btn-success" (click)="delete(row.id)">confirmar</button>
+          <button class="btn btn-danger" (click)="row.confirm = false">Cancelar</button>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>

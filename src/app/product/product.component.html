@@ -1,0 +1,57 @@
+<div class="form-grup" *ngIf="crud_operation.is_visible">
+  <label>Nombre</label>
+  <input type="text" class="form-control" [(ngModel)]="current_produ.nombre">
+  <label>sku</label>
+  <input type="number" class="form-control" [(ngModel)]="current_produ.sku">
+  <label>descripcion</label>
+  <input type="text" class="form-control" [(ngModel)]="current_produ.descripcion">
+  <br>
+  <button class="btn btn-primary" (click)="save()">Salvar</button>
+  <button class="btn btn-danger" (click)="crud_operation.is_visible=false">cancelar</button>
+</div>
+
+
+
+
+<div class="container">
+<div class="panel-body">
+  <h1>Tabla Productos</h1>
+  <table class="table table-bordered">
+    <tr>
+      <th>id</th>
+      <th>nombre</th>
+      <th>sku</th>
+      <th>descripcion</th>
+
+
+      <th class="text-right">
+        <button class="btn btn-success" (click)="new()">agregar Producto</button>
+      </th>
+
+    </tr>
+    <tr *ngFor="let row of data">
+      <td>{{row.id}}</td>
+      <td>{{row.nombre}}</td>
+      <td>{{row.sku}}</td>
+      <td>{{row.descripcion}}</td>
+
+      <td class="text-right">
+        <div *ngIf= "!row.confirm">
+         <button class="btn btn-success" (click)="editcc(row)">agregar al carro</button>
+          <button class="btn btn-danger" (click)="row.confirm = true">eliminar producto</button>
+          <button class="btn btn-primary" (click)="edit(row)">modificar producto</button>
+        </div>
+        <div *ngIf = "row.confirm">
+          <button class="btn btn-success" (click)="delete(row.id)">confirmar</button>
+          <button class="btn btn-danger" (click)="row.confirm = false">Cancelar</button>
+        </div>
+      </td>
+    </tr>
+    <tr *ngFor="let row of datac">
+
+      <td>{{row.status}}</td>
+
+    </tr>
+  </table>
+</div>
+</div>
